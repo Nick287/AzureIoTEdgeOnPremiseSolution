@@ -1,0 +1,9 @@
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\JsonConverterHelper\obj\Debug\netstandard2.0\JsonConverterHelper.csprojAssemblyReference.cache
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\JsonConverterHelper\obj\Debug\netstandard2.0\JsonConverterHelper.csproj.CoreCompileInputs.cache
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\JsonConverterHelper\obj\Debug\netstandard2.0\JsonConverterHelper.AssemblyInfoInputs.cache
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\JsonConverterHelper\obj\Debug\netstandard2.0\JsonConverterHelper.AssemblyInfo.cs
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\JsonConverterHelper\bin\Debug\netstandard2.0\JsonConverterHelper.deps.json
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\JsonConverterHelper\bin\Debug\netstandard2.0\JsonConverterHelper.dll
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\JsonConverterHelper\bin\Debug\netstandard2.0\JsonConverterHelper.pdb
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\JsonConverterHelper\obj\Debug\netstandard2.0\JsonConverterHelper.dll
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\JsonConverterHelper\obj\Debug\netstandard2.0\JsonConverterHelper.pdb

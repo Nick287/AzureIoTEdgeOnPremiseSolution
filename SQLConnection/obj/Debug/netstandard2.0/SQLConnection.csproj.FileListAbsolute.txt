@@ -1,0 +1,9 @@
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\SQLConnection\bin\Debug\netstandard2.0\SQLConnection.deps.json
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\SQLConnection\bin\Debug\netstandard2.0\SQLConnection.dll
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\SQLConnection\bin\Debug\netstandard2.0\SQLConnection.pdb
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\SQLConnection\obj\Debug\netstandard2.0\SQLConnection.csprojAssemblyReference.cache
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\SQLConnection\obj\Debug\netstandard2.0\SQLConnection.csproj.CoreCompileInputs.cache
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\SQLConnection\obj\Debug\netstandard2.0\SQLConnection.AssemblyInfoInputs.cache
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\SQLConnection\obj\Debug\netstandard2.0\SQLConnection.AssemblyInfo.cs
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\SQLConnection\obj\Debug\netstandard2.0\SQLConnection.dll
+d:\MS\FY19\AzureIoTEdgeOnPremiseSolution\AzureIoTEdgeOnPremiseSolution\SQLConnection\obj\Debug\netstandard2.0\SQLConnection.pdb
