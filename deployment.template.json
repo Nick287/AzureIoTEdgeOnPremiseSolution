@@ -85,6 +85,11 @@
             "settings": {
               "image": "${MODULES.MessageStorageModule}",
               "createOptions": {}
+            },
+            "env": {
+              "SqlConnectionString": {
+                "value": "Server=tcp:<your sql IP>,1433;Initial Catalog=<databasename>;User ID=<username>;Password=<Password>;TrustServerCertificate=False;Connection Timeout=30;"
+              }
             }
           }
         }

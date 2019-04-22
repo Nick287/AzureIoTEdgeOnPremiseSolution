@@ -3649,11 +3649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\MS\\FY19\\AzureIoTEdgeOnPremiseSolution\\AzureIoTEdgeOnPremiseSolution\\JsonConverterHelper\\JsonConverterHelper.csproj",
+      "projectUniqueName": "d:\\New folder\\AzureIoTEdgeOnPremiseSolution\\JsonConverterHelper\\JsonConverterHelper.csproj",
       "projectName": "JsonConverterHelper",
-      "projectPath": "d:\\MS\\FY19\\AzureIoTEdgeOnPremiseSolution\\AzureIoTEdgeOnPremiseSolution\\JsonConverterHelper\\JsonConverterHelper.csproj",
+      "projectPath": "d:\\New folder\\AzureIoTEdgeOnPremiseSolution\\JsonConverterHelper\\JsonConverterHelper.csproj",
       "packagesPath": "C:\\Users\\bwa\\.nuget\\packages\\",
-      "outputPath": "d:\\MS\\FY19\\AzureIoTEdgeOnPremiseSolution\\AzureIoTEdgeOnPremiseSolution\\JsonConverterHelper\\obj\\",
+      "outputPath": "d:\\New folder\\AzureIoTEdgeOnPremiseSolution\\JsonConverterHelper\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

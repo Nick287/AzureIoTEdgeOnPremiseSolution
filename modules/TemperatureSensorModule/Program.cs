@@ -13,6 +13,7 @@ namespace TemperatureSensorModule
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Json;
     using Newtonsoft.Json;
+    using IoTEdgeJsonConverterHelper;
 
 
     class Program
@@ -103,20 +104,6 @@ namespace TemperatureSensorModule
             //     pipeMessage.Properties.Add("MessageType", "Alert");
 
             await _moduleClient.SendEventAsync("TemperatureModuleOutput", pipeMessage);
-        }
-
-
-        [DataContract]
-        internal class TemperatureSensor
-        {
-            [DataMember]
-            internal string timestamp;
-
-            [DataMember]
-            internal string alerttype;
-
-            [DataMember]
-            internal double temperature;
         }
 
         /// <summary>

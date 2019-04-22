@@ -88,7 +88,7 @@ namespace MessageStorageModule
 
             try
             {
-                string str = "Server=tcp:52.172.8.130,1433;Initial Catalog=iDACS;User ID=sa;Password=Strong!Passw0rd;TrustServerCertificate=False;Connection Timeout=30;";
+                string str = "Server=tcp:<your sql IP>,1433;Initial Catalog=<databasename>;User ID=<username>;Password=<Password>;TrustServerCertificate=False;Connection Timeout=30;";
                 if (Environment.GetEnvironmentVariable("SqlConnectionString") != string.Empty)
                 {
                     str = Environment.GetEnvironmentVariable("SqlConnectionString");
