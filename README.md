@@ -82,10 +82,10 @@ For each deployment, a new subfolder is created in the "EdgeJobs" folder. In ord
             string _notificationText = "TEMPERATURE > 50 and TEMPERATURE IS " + ts.temperature + "C°";
             string _epochtimes = Program.ToEpoch(dt).ToString();
             System.Text.StringBuilder _sb = new System.Text.StringBuilder();
-            _sb.Append("INSERT INTO[dbo].[OrgNotifications]([TenantCode],[BaseOrgCode],[CreatorType],[CreatorId],[ReceiverId],[NotificationCategoryCode],[Subject],[NotificationText],[SentOn],[ReceivedOn])");
-            _sb.Append("VALUES('MIND','MSSLU16',");
+            _sb.Append("INSERT INTO[dbo].[Tablename]([DeviceID],[ModuleName],[MessageType],[Subject],[NotificationText],[ReceivedOn])");
+            _sb.Append("VALUES('BeDevice001',");
+            _sb.Append("'ALERT',");
             _sb.Append("'IoTModule',");
-            _sb.Append("52,52,'ALERT',");
             _sb.Append("'" + _subject + "',");
             _sb.Append("'" + _notificationText + "',");
             _sb.Append("'" + _epochtimes + "',");
