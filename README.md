@@ -32,76 +32,77 @@ For each deployment, a new subfolder is created in the "EdgeJobs" folder. In ord
 
 3. ***SQLModule*** it's Data processing module, this module will receive the message only the temperature value above 50 and then SQLModule generate the SQL sctipt and connect to the local SQL Server for execute it. In this solution sample code have a SQLConnection project it is use to connect SQL and execute SQL script. and there have other project **MessageStorageModule** this project is uesd to processing data. 
 
-please configure your string Sql connection string in your 'deployment.template.json' file
+    please configure your string Sql connection string in your 'deployment.template.json' file
 
-```js
-"MessageStorageModule": {
-    "version": "1.0",
-    "type": "docker",
-    "status": "running",
-    "restartPolicy": "always",
-    "settings": {
-    "image": "${MODULES.MessageStorageModule}",
-    "createOptions": {}
-    },
-    "env": {
-    "SqlConnectionString": {
-        "value": "Data Source=52.172.30.81;Initial Catalog=iDACSDB;User Id=SA;Password=Mind@987;TrustServerCertificate=False;Connection Timeout=30;"
+    ```js
+    "MessageStorageModule": {
+        "version": "1.0",
+        "type": "docker",
+        "status": "running",
+        "restartPolicy": "always",
+        "settings": {
+        "image": "${MODULES.MessageStorageModule}",
+        "createOptions": {}
+        },
+        "env": {
+        "SqlConnectionString": {
+            "value": "Data Source=52.172.30.81;Initial Catalog=iDACSDB;User Id=SA;Password=Mind@987;TrustServerCertificate=False;Connection Timeout=30;"
+        }
+        }
     }
-    }
-}
-```
-Please reference generate the SQL sctipt code here
+    ```
+    Please reference generate the SQL sctipt code here
 
 ``` C#
- try
-            {
-                string str = "Server=tcp:<your sql IP>,1433;Initial Catalog=<databasename>;User ID=<username>;Password=<Password>;TrustServerCertificate=False;Connection Timeout=30;";
-                if (Environment.GetEnvironmentVariable("SqlConnectionString") != string.Empty)
-                {
-                    str = Environment.GetEnvironmentVariable("SqlConnectionString");
-                }
-                string _sql = string.Empty;
-                List<TemperatureSensor> _listts = null;
-                string _json = messageString;
-                if (_json.StartsWith("[") && _json.EndsWith("]"))
-                {
-                    List<TemperatureSensor> lts = JsonConvert.DeserializeObject<List<TemperatureSensor>>(_json);
-                    _listts = lts;
-                }
-                else
-                {
-                    TemperatureSensor ts = JsonConvert.DeserializeObject<TemperatureSensor>(_json);
-                    _listts = new List<TemperatureSensor>();
-                    _listts.Add(ts);
-                }
-                foreach (TemperatureSensor ts in _listts)
-                {
-                    DateTime dt = DateTime.Parse(ts.timestamp);
-                    string _subject = "TEMPERATURE > 50";
-                    string _notificationText = "TEMPERATURE > 50 and TEMPERATURE IS " + ts.temperature + "C°";
-                    string _epochtimes = Program.ToEpoch(dt).ToString();
-                    System.Text.StringBuilder _sb = new System.Text.StringBuilder();
-                    _sb.Append("INSERT INTO[dbo].[TableName]([DeviceID],[ModuleName],[MessageType],[Subject],[NotificationText],[ReceivedOn])");
-                    _sb.Append("VALUES('BoDevice001',");
-                    _sb.Append("'IoTModule',");
-                    _sb.Append("'ALERT',");
-                    _sb.Append("'" + _subject + "',");
-                    _sb.Append("'" + _notificationText + "',");
-                    _sb.Append("'" + _epochtimes + "'");
-                    _sb.Append(")");
-                    _sql += _sb.ToString();
-                }
+try
+{
+    string str = "Server=tcp:<your sql IP>,1433;Initial Catalog=<databasename>;User ID=<username>;Password=<Password>;TrustServerCertificate=False;Connection Timeout=30;";
+    if (Environment.GetEnvironmentVariable("SqlConnectionString") != string.Empty)
+    {
+        str = Environment.GetEnvironmentVariable("SqlConnectionString");
+    }
+    string _sql = string.Empty;
+    List<TemperatureSensor> _listts = null;
+    string _json = messageString;
+    if (_json.StartsWith("[") && _json.EndsWith("]"))
+    {
+        List<TemperatureSensor> lts = JsonConvert.DeserializeObject<List<TemperatureSensor>>(_json);
+        _listts = lts;
+    }
+    else
+    {
+        TemperatureSensor ts = JsonConvert.DeserializeObject<TemperatureSensor>(_json);
+        _listts = new List<TemperatureSensor>();
+        _listts.Add(ts);
+    }
+    foreach (TemperatureSensor ts in _listts)
+    {
+        DateTime dt = DateTime.Parse(ts.timestamp);
+        string _subject = "TEMPERATURE > 50";
+        string _notificationText = "TEMPERATURE > 50 and TEMPERATURE IS " + ts.temperature + "C°";
+        string _epochtimes = Program.ToEpoch(dt).ToString();
+        System.Text.StringBuilder _sb = new System.Text.StringBuilder();
+        _sb.Append("INSERT INTO[dbo].[OrgNotifications]([TenantCode],[BaseOrgCode],[CreatorType],[CreatorId],[ReceiverId],[NotificationCategoryCode],[Subject],[NotificationText],[SentOn],[ReceivedOn])");
+        _sb.Append("VALUES('MIND','MSSLU16',");
+        _sb.Append("'IoTModule',");
+        _sb.Append("52,52,'ALERT',");
+        _sb.Append("'" + _subject + "',");
+        _sb.Append("'" + _notificationText + "',");
+        _sb.Append("'" + _epochtimes + "',");
+        _sb.Append("'" + _epochtimes + "'");
+        _sb.Append(")");
+        _sql += _sb.ToString();
+    }
 
-                Console.WriteLine("SQL script: " + _sql);
+    Console.WriteLine("SQL script: " + _sql);
 
-                string result = new EdgeSqlModuleHelper(str).ExecuteSQL(_sql);
+    string result = new EdgeSqlModuleHelper(str).ExecuteSQL(_sql);
 
-                Console.WriteLine(result);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+    Console.WriteLine(result);
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
 ```
 
