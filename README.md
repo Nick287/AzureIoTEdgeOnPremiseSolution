@@ -116,10 +116,10 @@ For each deployment, a new subfolder is created in the "EdgeJobs" folder. In ord
 4. ***SQL Database*** for this case i will deploy a SQL Database in localy. It is also possible to use other databases as the storage database if you want, like MySQL or PostgreSQL.
     >  Azure IoT Edge and SQL Server to store and query data at the edge. Azure IoT Edge has basic storage capabilities to cache messages if a device goes offline, and then forward them when the connection is reestablished. However, you may want more advanced storage capabilities, like being able to query data locally. Your IoT Edge devices can use local databases to perform more complex computing without having to maintain a connection to IoT Hub.
 
-In fact access the database based on the ADO.NET class library so you need add reference the lib like this in your projec.(Open the sqlFunction.csproj file, find the group of package references, and add a new one to include SqlClient.)
-```html
-<PackageReference Include="System.Data.SqlClient" Version="4.5.1"/>
-```
-and then deploy the SQL Database to IoT Edge device you just need add the deployment information in to your 'deployment.template.json' file, if you are using visual studio code you can install module from Azure Marketplace very easily. please reference the totorials [Add the SQL Server container](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-store-data-sql-server#add-the-sql-server-container) the next is setup the SQL Table please follow these steps:
-1. 
+    In fact access the database based on the ADO.NET class library so you need add reference the lib like this in your projec.(Open the sqlFunction.csproj file, find the group of package references, and add a new one to include SqlClient.)
+    ```html
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1"/>
+    ```
+    and then deploy the SQL Database to IoT Edge device you just need add the deployment information in to your 'deployment.template.json' file, if you are using visual studio code you can install module from Azure Marketplace very easily. please reference the totorials [Add the SQL Server container](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-store-data-sql-server#add-the-sql-server-container) the next is setup the SQL Table please follow these steps:
+    1. Login your database 
 
