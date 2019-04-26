@@ -14,6 +14,9 @@ If you have no experience with Azure IoT and IoT Edge, please read this first an
 ![Azure IoT Edge On-Premise Gateway Architecture](https://github.com/Nick287/AzureIoTEdgeOnPremiseSolution/blob/master/Img/Motherson%20Azure%20IoTEdge%20On-Premise%20Solution.jpg?raw=true)
 
 For the sample code you will see have 4 module here：
+
+The BI dashboard in the architecture diagram is not included in this sample because eventually all of the data stored in the local database, so the any BI tools such as Power BI embeded can do the data virtualization presentation locally.
+
 1. ***TemperatureSensorModule*** this module will send the Json message in to the IoT Edge Runtime. (temperature value will between 10 and 70 when the value over 50 alerttype will form 'normal' change to 'overheating' )
 
     ```js
