@@ -120,6 +120,41 @@ For each deployment, a new subfolder is created in the "EdgeJobs" folder. In ord
     ```html
     <PackageReference Include="System.Data.SqlClient" Version="4.5.1"/>
     ```
-    and then deploy the SQL Database to IoT Edge device you just need add the deployment information in to your 'deployment.template.json' file, if you are using visual studio code you can install module from Azure Marketplace very easily. please reference the totorials [Add the SQL Server container](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-store-data-sql-server#add-the-sql-server-container) the next is setup the SQL Table please follow these steps:
-    1. Login your database 
+    and then deploy the SQL Database to IoT Edge device you just need add the deployment information in to your 'deployment.template.json' file, if you are using visual studio code you can install module from Azure Marketplace very easily. please reference the totorials [Add the SQL Server container](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-store-data-sql-server#add-the-sql-server-container), when you're complete install module, you'll see your configuration file look like this. after that please delopy it to your device. please reference [Deploy the solution to a device](https://docs.microsoft.com/en-us/azure/iot-edge/tutorial-store-data-sql-server#deploy-the-solution-to-a-device)
+    ```json
+    "SQLServerModule": {
+    "type": "docker",
+    "settings": {
+        "image": "microsoft/mssql-server-linux:2017-latest",
+        "createOptions": "{\"Env\":[\"ACCEPT_EULA=Y\",\"SA_PASSWORD=Strong!Passw0rd\"],\"HostConfig\":{\"Mounts\":[{\"Target\":\"/var/opt/mssql\",\"Source\":\"idacs\",\"Type\":\"volume\"}],\"PortBindings\":{\"1433/tcp\":[{\"HostPort\":\"1433\"}]}}}"
+    },
+    "version": "1.0",
+    "status": "running",
+    "restartPolicy": "always"
+    },
+    ```
+    The next is setup the SQL Table please follow these steps:
+    1. Login and create the SQL database you can use bash commend do this but here i am recommended to use [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017) Because I'm deployed SQL server image environment in my local machine, I'm using localhost to connect to the database and if you're using a virtual machine, use the IP address to connect to the database.
 
+    2. Create the Database and table like this and i have share the table create script here 
+        ```sql
+        CREATE TABLE [dbo].[Bo_Test_Table](
+        [ID] [int] IDENTITY(1,1) NOT NULL,
+        [DeviceID] [nvarchar](50) NOT NULL,
+        [ModuleName] [nvarchar](50) NOT NULL,
+        [MessageType] [nvarchar](50) NOT NULL,
+        [Subject] [nvarchar](50) NOT NULL,
+        [NotificationText] [nvarchar](50) NOT NULL,
+        [ReceivedOn] [float] NOT NULL
+        ) ON [PRIMARY]
+        GO
+        ```
+Once we're done with the SQL database, we just need to configure the 'deployment.template.json' file, but there's one more thing we need to be careful about, it is iotedge routes, There are two important configure here
+1. **TemperatureModuleToasa** This ensures that sensor information is passed through iotedge runtime into the SA
+2. **asaToIoSQLModule** This ensures that filtered sensor information is passed into the data processing module
+```json
+"routes": {
+    "TemperatureModuleToasa": "FROM /messages/modules/edgetempmod/outputs/TemperatureModuleOutput INTO BrokeredEndpoint(\"/modules/asa/inputs/TemperatureModuleOutput\")",
+    "asaToIoSQLModule": "FROM /messages/modules/asa/outputs/* INTO BrokeredEndpoint(\"/modules/edgesqlclient/inputs/sqlinput\")"
+},
+```
