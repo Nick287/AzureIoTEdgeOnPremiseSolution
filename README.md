@@ -135,6 +135,7 @@ For each deployment, a new subfolder is created in the "EdgeJobs" folder. In ord
     ```
     The next is setup the SQL Table please follow these steps:
     1. Login and create the SQL database you can use bash commend do this but here i am recommended to use [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017) Because I'm deployed SQL server image environment in my local machine, I'm using localhost to connect to the database and if you're using a virtual machine, use the IP address to connect to the database.
+    ![SQL server Login](https://github.com/Nick287/AzureIoTEdgeOnPremiseSolution/blob/master/Img/SQLlogin.png?raw=true)
 
     2. Create the Database and table like this and i have share the table create script here 
         ```sql
@@ -149,12 +150,14 @@ For each deployment, a new subfolder is created in the "EdgeJobs" folder. In ord
         ) ON [PRIMARY]
         GO
         ```
-Once we're done with the SQL database, we just need to configure the 'deployment.template.json' file, but there's one more thing we need to be careful about, it is iotedge routes, There are two important configure here
-1. **TemperatureModuleToasa** This ensures that sensor information is passed through iotedge runtime into the SA
-2. **asaToIoSQLModule** This ensures that filtered sensor information is passed into the data processing module
-```json
-"routes": {
-    "TemperatureModuleToasa": "FROM /messages/modules/edgetempmod/outputs/TemperatureModuleOutput INTO BrokeredEndpoint(\"/modules/asa/inputs/TemperatureModuleOutput\")",
-    "asaToIoSQLModule": "FROM /messages/modules/asa/outputs/* INTO BrokeredEndpoint(\"/modules/edgesqlclient/inputs/sqlinput\")"
-},
-```
+        ![SQL Script](https://github.com/Nick287/AzureIoTEdgeOnPremiseSolution/blob/master/Img/SQLscript.png?raw=true)
+5. Once we're done with the SQL database, we just need to configure the 'deployment.template.json' file, but there's one more thing we need to be careful about, it is iotedge routes, There are two important configure here
+    1. **TemperatureModuleToasa** This ensures that sensor information is passed through iotedge runtime into the SA
+    2. **asaToIoSQLModule** This ensures that filtered sensor information is passed into the data processing module
+        ```json
+        "routes": {
+            "TemperatureModuleToasa": "FROM /messages/modules/edgetempmod/outputs/TemperatureModuleOutput INTO BrokeredEndpoint(\"/modules/asa/inputs/TemperatureModuleOutput\")",
+            "asaToIoSQLModule": "FROM /messages/modules/asa/outputs/* INTO BrokeredEndpoint(\"/modules/edgesqlclient/inputs/sqlinput\")"
+        },
+        ```
+When your deployment is complete, you can check the running status through IoTedge command/ logs/ or records in the database. I hope this document can help you.
