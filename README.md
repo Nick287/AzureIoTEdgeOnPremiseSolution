@@ -56,7 +56,7 @@ For each deployment, a new subfolder is created in the "EdgeJobs" folder. In ord
         },
         "env": {
         "SqlConnectionString": {
-            "value": "Data Source=52.172.30.81;Initial Catalog=iDACSDB;User Id=SA;Password=Mind@987;TrustServerCertificate=False;Connection Timeout=30;"
+            "value": "Data Source=<IP address>;Initial Catalog=<databasename>User Id=<username>;Password=<password>;TrustServerCertificate=False;Connection Timeout=30;"
         }
         }
     }
